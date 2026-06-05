@@ -19,11 +19,30 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-interface Project {
+type ProjectStatus = 'PLANNING' | 'ACTIVE' | 'IN_PROGRESS' | 'ON_HOLD' | 'COMPLETE'
+
+const STATUS_LABELS: Record<ProjectStatus, string> = {
+  PLANNING:    'Planning',
+  ACTIVE:      'Active',
+  IN_PROGRESS: 'In Progress',
+  ON_HOLD:     'On Hold',
+  COMPLETE:    'Complete',
+}
+
+const STATUS_COLORS: Record<ProjectStatus, string> = {
+  PLANNING:    '#94a3b8',
+  ACTIVE:      '#22c55e',
+  IN_PROGRESS: '#6366f1',
+  ON_HOLD:     '#f97316',
+  COMPLETE:    '#14b8a6',
+}
+
+export interface Project {
   id: string
   title: string
   description?: string | null
   color: string
+  status: ProjectStatus
   _count: { tasks: number }
 }
 
@@ -73,9 +92,17 @@ function SortableProjectCard({ project }: { project: Project }) {
             </div>
           </div>
           <div className="flex-1 min-w-0 pr-4">
-            <p className="font-medium text-white group-hover:text-accent transition-colors truncate">
-              {project.title}
-            </p>
+            <div className="flex items-center gap-2">
+              <p className="font-medium text-white group-hover:text-accent transition-colors truncate">
+                {project.title}
+              </p>
+              <span
+                className="flex-shrink-0 text-[10px] font-semibold px-1.5 py-0.5 rounded-full"
+                style={{ backgroundColor: STATUS_COLORS[project.status] + '22', color: STATUS_COLORS[project.status] }}
+              >
+                {STATUS_LABELS[project.status]}
+              </span>
+            </div>
             {project.description && (
               <p className="text-sm text-muted mt-0.5 truncate">{project.description}</p>
             )}
@@ -104,6 +131,8 @@ export function ProjectsClient({ projects: initial }: { projects: Project[] }) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [color, setColor] = useState('#6366f1')
+  const [newStatus, setNewStatus] = useState<ProjectStatus>('IN_PROGRESS')
+  const [statusFilter, setStatusFilter] = useState<ProjectStatus | 'ALL'>('ALL')
   const [submitting, setSubmitting] = useState(false)
 
   const sensors = useSensors(
@@ -138,7 +167,7 @@ export function ProjectsClient({ projects: initial }: { projects: Project[] }) {
     const res = await fetch('/api/projects', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: title.trim(), description: description.trim() || undefined, color }),
+      body: JSON.stringify({ title: title.trim(), description: description.trim() || undefined, color, status: newStatus }),
     })
 
     if (res.ok) {
@@ -147,6 +176,7 @@ export function ProjectsClient({ projects: initial }: { projects: Project[] }) {
       setTitle('')
       setDescription('')
       setColor('#6366f1')
+      setNewStatus('IN_PROGRESS')
       setCreating(false)
       router.refresh()
     }
@@ -155,7 +185,7 @@ export function ProjectsClient({ projects: initial }: { projects: Project[] }) {
 
   return (
     <div className="animate-fade-in">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold text-white">Projects</h1>
           <p className="text-muted mt-1">Organize tasks into ongoing projects</p>
@@ -163,6 +193,24 @@ export function ProjectsClient({ projects: initial }: { projects: Project[] }) {
         <button className="btn-primary" onClick={() => setCreating(true)}>
           New project
         </button>
+      </div>
+
+      {/* Status filter */}
+      <div className="flex gap-1.5 flex-wrap mb-6">
+        {(['ALL', 'ACTIVE', 'IN_PROGRESS', 'PLANNING', 'ON_HOLD', 'COMPLETE'] as const).map(s => (
+          <button
+            key={s}
+            onClick={() => setStatusFilter(s)}
+            className={`text-xs font-medium px-3 py-1.5 rounded-full transition-colors ${
+              statusFilter === s
+                ? 'bg-accent text-white'
+                : 'bg-surface-2 text-muted hover:text-white'
+            }`}
+            style={statusFilter === s && s !== 'ALL' ? { backgroundColor: STATUS_COLORS[s] } : {}}
+          >
+            {s === 'ALL' ? 'All' : STATUS_LABELS[s]}
+          </button>
+        ))}
       </div>
 
       {/* Create project form */}
@@ -183,6 +231,15 @@ export function ProjectsClient({ projects: initial }: { projects: Project[] }) {
               value={description}
               onChange={e => setDescription(e.target.value)}
             />
+            <select
+              className="input"
+              value={newStatus}
+              onChange={e => setNewStatus(e.target.value as ProjectStatus)}
+            >
+              {(Object.keys(STATUS_LABELS) as ProjectStatus[]).map(s => (
+                <option key={s} value={s}>{STATUS_LABELS[s]}</option>
+              ))}
+            </select>
             <div>
               <p className="text-xs text-muted mb-2">Color</p>
               <div className="flex gap-2 flex-wrap">
@@ -230,9 +287,11 @@ export function ProjectsClient({ projects: initial }: { projects: Project[] }) {
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleProjectDragEnd}>
           <SortableContext items={projects.map(p => p.id)} strategy={rectSortingStrategy}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {projects.map(p => (
-                <SortableProjectCard key={p.id} project={p} />
-              ))}
+              {projects
+                .filter(p => statusFilter === 'ALL' || p.status === statusFilter)
+                .map(p => (
+                  <SortableProjectCard key={p.id} project={p} />
+                ))}
             </div>
           </SortableContext>
         </DndContext>

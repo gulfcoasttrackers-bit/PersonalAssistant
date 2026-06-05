@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { ProjectDetailClient } from './ProjectDetailClient'
+import type { Project } from './ProjectDetailClient'
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -21,7 +22,5 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   })
 
   if (!project) notFound()
-
-  if (!project) notFound()
-  return <ProjectDetailClient project={project as any} />
+  return <ProjectDetailClient project={project as unknown as Project} />
 }

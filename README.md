@@ -95,6 +95,14 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) — you'll be redirected to `/login`. Register a new account to get started.
 
+For AppDev Launcher use, start Personal Assistant on a dedicated port so it does not collide with Dolphin House:
+
+```bash
+npm run dev:launcher
+```
+
+This runs Personal Assistant at `http://127.0.0.1:3001` with a matching `NEXTAUTH_URL`.
+
 ---
 
 ## Available Scripts
@@ -102,6 +110,7 @@ Open [http://localhost:3000](http://localhost:3000) — you'll be redirected to 
 | Command | Description |
 |---|---|
 | `npm run dev` | Start development server on port 3000 |
+| `npm run dev:launcher` | Start development server on port 3001 for AppDev Launcher use |
 | `npm run build` | Build for production |
 | `npm run start` | Run the production build |
 | `npm run lint` | Run ESLint |
@@ -258,3 +267,27 @@ A **Sign in with Google** button will automatically appear on the login page onc
 | `NEXTAUTH_URL` | Yes | Full URL of the app (e.g. `http://localhost:3000`) |
 | `GOOGLE_CLIENT_ID` | No | Google OAuth client ID (Calendar sync) |
 | `GOOGLE_CLIENT_SECRET` | No | Google OAuth client secret (Calendar sync) |
+
+---
+
+## Operational Team Sync
+
+- Portfolio-wide operational team source: [Operational Team Register](../Portfolio%20Pilot/docs/Operational-Team-Register.md)
+- Dedicated cybersecurity specialist for this project: Aegis Fortress (CY) via Orbit Agent Command
+- Security-sensitive changes should route through Piper + Aegis Fortress (CY) per Squad routing policy
+
+---
+
+## Aegis Governance
+
+| Field | Value |
+|---|---|
+| Current Gate | 1 — Build Readiness |
+| Last Gate Review | 2026-05-02 |
+| Owner | PM |
+| Active Waiver | None |
+
+- [Decision Log](docs/aegis/Decision-Log.md)
+- [Gate 2 Compliance Packet](docs/aegis/Gate-2-Compliance-Packet.md)
+- [Gate 3 Security Signoff](docs/aegis/Gate-3-Security-Signoff.md)
+- [Gate 4 Release Approval](docs/aegis/Gate-4-Release-Approval.md)

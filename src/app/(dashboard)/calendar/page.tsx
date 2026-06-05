@@ -30,5 +30,24 @@ export default async function CalendarPage() {
     }),
   ])
 
-  return <CalendarClient events={events as any} tasks={tasks as any} />
+  const serializedEvents = events.map(event => ({
+    id: event.id,
+    title: event.title,
+    startTime: event.startTime.toISOString(),
+    endTime: event.endTime.toISOString(),
+    allDay: event.allDay,
+    description: event.description,
+  }))
+
+  const serializedTasks = tasks
+    .filter(task => !!task.dueDate)
+    .map(task => ({
+      id: task.id,
+      title: task.title,
+      dueDate: task.dueDate!.toISOString(),
+      completed: task.completed,
+      priority: task.priority,
+    }))
+
+  return <CalendarClient events={serializedEvents} tasks={serializedTasks} />
 }

@@ -46,6 +46,8 @@ export async function POST(req: NextRequest) {
       ...result.data,
       startTime: new Date(result.data.startTime),
       endTime: new Date(result.data.endTime),
+      source: 'LOCAL',
+      localEdits: false,
       userId: session.user.id,
     },
   })

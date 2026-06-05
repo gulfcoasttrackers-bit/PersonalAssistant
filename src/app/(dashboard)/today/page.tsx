@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { TodayClient } from './TodayClient'
+import type { TaskType } from '@/components/TaskItem'
 
 export default async function TodayPage() {
   const session = await getServerSession(authOptions)
@@ -32,7 +33,7 @@ export default async function TodayPage() {
 
   const greeting = getGreeting(session.user.name)
 
-  return <TodayClient tasks={tasks as any} greeting={greeting} />
+  return <TodayClient tasks={tasks as unknown as TaskType[]} greeting={greeting} />
 }
 
 function getGreeting(name?: string | null) {

@@ -34,6 +34,12 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       ...result.data,
       ...(result.data.startTime ? { startTime: new Date(result.data.startTime) } : {}),
       ...(result.data.endTime ? { endTime: new Date(result.data.endTime) } : {}),
+      ...(event.googleEventId
+        ? {
+            localEdits: true,
+            lastLocalEditAt: new Date(),
+          }
+        : {}),
     },
   })
 

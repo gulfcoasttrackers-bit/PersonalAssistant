@@ -14,13 +14,14 @@ model User {
   id        String   @id @default(cuid())
   email     String   @unique
   name      String?
-  password  String
+  password  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   projects Project[]
   tasks    Task[]
   events   Event[]
+  calendarSyncLogs CalendarSyncLog[]
   accounts Account[]
   sessions Session[]
 }
@@ -30,6 +31,7 @@ model Project {
   title       String
   description String?
   color       String   @default("#6366f1")
+  status      ProjectStatus @default(IN_PROGRESS)
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -37,6 +39,14 @@ model Project {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   tasks  Task[]
+}
+
+enum ProjectStatus {
+  PLANNING
+  ACTIVE
+  IN_PROGRESS
+  ON_HOLD
+  COMPLETE
 }
 
 model Task {
@@ -73,12 +83,40 @@ model Event {
   startTime     DateTime
   endTime       DateTime
   allDay        Boolean  @default(false)
+  source        EventSource @default(LOCAL)
+  externalImportUid String? @unique
   googleEventId String?  @unique
+  localEdits    Boolean  @default(false)
+  lastLocalEditAt DateTime?
+  lastGoogleSyncAt DateTime?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum EventSource {
+  LOCAL
+  GOOGLE
+  IMPORTED
+}
+
+model CalendarSyncLog {
+  id         String   @id @default(cuid())
+  trigger    String   @default("manual")
+  status     String   @default("success")
+  synced     Int      @default(0)
+  skipped    Int      @default(0)
+  conflicts  Int      @default(0)
+  total      Int      @default(0)
+  detail     String?
+  createdAt  DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
 }
 
 // NextAuth required models
@@ -90,11 +128,12 @@ model Account {
   providerAccountId String
   refresh_token     String? @db.Text
   access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
+  expires_at                Int?
+  token_type                String?
+  scope                     String?
+  id_token                  String? @db.Text
+  session_state             String?
+  refresh_token_expires_in  Int?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

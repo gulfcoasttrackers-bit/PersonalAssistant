@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { cn, formatDate, isPast } from '@/lib/utils'
+import { TaskDetailPanel } from './TaskDetailPanel'
 
 export interface TaskType {
   id: string
@@ -22,13 +23,6 @@ interface ProjectOption {
   id: string
   title: string
   color: string
-}
-
-const PRIORITY_COLORS: Record<string, string> = {
-  URGENT: 'text-red-400',
-  HIGH: 'text-orange-400',
-  MEDIUM: 'text-yellow-400/70',
-  LOW: 'text-zinc-600',
 }
 
 const PRIORITY_DOT: Record<string, string> = {
@@ -144,6 +138,8 @@ export function TaskItem({ task, depth = 0, onUpdate }: TaskItemProps) {
     onUpdate?.()
   }
 
+  const [detailOpen, setDetailOpen] = useState(false)
+
   const hasSubtasks = task.subtasks.length > 0
   const overdueDate = task.dueDate && !task.completed && isPast(task.dueDate)
 
@@ -195,7 +191,10 @@ export function TaskItem({ task, depth = 0, onUpdate }: TaskItemProps) {
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <p className={cn('text-sm leading-snug', task.completed && 'line-through text-muted')}>
+          <p
+            className={cn('text-sm leading-snug cursor-pointer hover:text-accent transition-colors', task.completed && 'line-through text-muted')}
+            onClick={() => setDetailOpen(true)}
+          >
             {task.title}
           </p>
           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
@@ -278,6 +277,15 @@ export function TaskItem({ task, depth = 0, onUpdate }: TaskItemProps) {
             Cancel
           </button>
         </form>
+      )}
+
+      {/* Detail panel */}
+      {detailOpen && (
+        <TaskDetailPanel
+          task={task}
+          onClose={() => setDetailOpen(false)}
+          onUpdate={() => { router.refresh(); onUpdate?.() }}
+        />
       )}
 
       {/* Edit form */}

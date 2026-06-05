@@ -15,7 +15,7 @@ import {
 } from '@dnd-kit/core'
 import { SortableContext, arrayMove, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
-interface Project {
+export interface Project {
   id: string
   title: string
   description?: string | null

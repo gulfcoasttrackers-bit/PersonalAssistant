@@ -9,6 +9,8 @@ declare module 'next-auth' {
       email?: string | null
       image?: string | null
     }
+    hasGoogle?: boolean
+    googleAccessToken?: string
   }
 
   interface User {
@@ -21,5 +23,7 @@ declare module 'next-auth/jwt' {
     id?: string
     googleAccessToken?: string
     googleRefreshToken?: string
+    googleExpiresAt?: number
+    hasGoogle?: boolean
   }
 }
