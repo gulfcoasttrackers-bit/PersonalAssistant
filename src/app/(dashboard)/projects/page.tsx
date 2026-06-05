@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { ProjectsClient } from './ProjectsClient'
+import type { Project } from './ProjectsClient'
 
 export default async function ProjectsPage() {
   const session = await getServerSession(authOptions)
@@ -15,5 +16,5 @@ export default async function ProjectsPage() {
     orderBy: { order: 'asc' },
   })
 
-  return <ProjectsClient projects={projects as any} />
+  return <ProjectsClient projects={projects as unknown as Project[]} />
 }

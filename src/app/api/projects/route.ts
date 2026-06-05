@@ -8,9 +8,10 @@ const createSchema = z.object({
   title: z.string().min(1).max(200),
   description: z.string().max(1000).optional(),
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+  status: z.enum(['PLANNING', 'ACTIVE', 'IN_PROGRESS', 'ON_HOLD', 'COMPLETE']).optional(),
 })
 
-export async function GET(_req: NextRequest) {
+export async function GET() {
   const session = await getServerSession(authOptions)
   if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 

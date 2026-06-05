@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:launcher": "NEXTAUTH_URL=http://127.0.0.1:3001 next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

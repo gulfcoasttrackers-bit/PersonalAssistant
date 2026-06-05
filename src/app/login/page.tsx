@@ -11,6 +11,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [showReset, setShowReset] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -72,6 +73,13 @@ export default function LoginPage() {
                 required
                 autoComplete="current-password"
               />
+              <button
+                type="button"
+                onClick={() => setShowReset(true)}
+                className="text-xs text-accent hover:text-accent-hover transition-colors mt-1.5 block"
+              >
+                Forgot password?
+              </button>
             </div>
 
             {error && (
@@ -92,6 +100,35 @@ export default function LoginPage() {
             Create one
           </Link>
         </p>
+
+        {/* Forgot Password Modal */}
+        {showReset && (
+          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center px-4">
+            <div className="bg-surface border border-border rounded-lg shadow-2xl max-w-sm w-full p-6 animate-fade-in">
+              <h2 className="text-lg font-semibold text-white mb-3">Reset Password</h2>
+              <p className="text-sm text-muted mb-4">
+                To reset your password, contact the administrator with your email address. 
+                Or sign in with Google if you&apos;ve connected your account.
+              </p>
+              <div className="space-y-2 mb-4">
+                <p className="text-xs text-subtle font-medium">Your email:</p>
+                <p className="text-sm text-white bg-surface-2 px-3 py-2 rounded border border-border break-all">{email || 'Enter email above'}</p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowReset(false)}
+                  className="btn-ghost flex-1"
+                >
+                  Close
+                </button>
+                <Link href="/login" className="btn-primary flex-1 text-center">
+                  Try Google Sign-in
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

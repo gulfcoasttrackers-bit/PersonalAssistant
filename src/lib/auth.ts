@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
           where: { email: credentials.email.toLowerCase().trim() },
         })
 
-        if (!user) return null
+        if (!user || !user.password) return null
 
         const valid = await bcrypt.compare(credentials.password, user.password)
         if (!valid) return null
@@ -38,6 +38,7 @@ export const authOptions: NextAuthOptions = {
           GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            allowDangerousEmailAccountLinking: true,
             authorization: {
               params: {
                 scope:
@@ -56,14 +57,17 @@ export const authOptions: NextAuthOptions = {
       if (account?.provider === 'google') {
         token.googleAccessToken = account.access_token
         token.googleRefreshToken = account.refresh_token
+        token.googleExpiresAt = account.expires_at
+        token.hasGoogle = true
       }
       return token
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string
+        session.hasGoogle = token.hasGoogle ?? false
         if (token.googleAccessToken) {
-          ;(session as any).googleAccessToken = token.googleAccessToken
+          session.googleAccessToken = token.googleAccessToken
         }
       }
       return session

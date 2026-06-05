@@ -8,6 +8,7 @@ const updateSchema = z.object({
   title: z.string().min(1).max(200).optional(),
   description: z.string().max(1000).optional().nullable(),
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+  status: z.enum(['PLANNING', 'ACTIVE', 'IN_PROGRESS', 'ON_HOLD', 'COMPLETE']).optional(),
   order: z.number().int().optional(),
 })
 

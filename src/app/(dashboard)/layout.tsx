@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { Sidebar } from '@/components/Sidebar'
 import { QuickEntry } from '@/components/QuickEntry'
+import { CalendarAutoSyncAgent } from '@/components/CalendarAutoSyncAgent'
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions)
@@ -17,6 +18,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
         </div>
       </main>
       <QuickEntry />
+      <CalendarAutoSyncAgent />
     </div>
   )
 }
