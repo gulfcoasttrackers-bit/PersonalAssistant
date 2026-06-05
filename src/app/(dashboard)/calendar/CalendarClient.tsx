@@ -449,7 +449,7 @@ export function CalendarClient({ events: initialEvents, tasks }: { events: Calen
         parts.push(`recognized Dolphin House exports ${recognizedDolphinFiles}`)
       }
       if (skippedNonDolphinFiles > 0) {
-        parts.push(`non-HAD files skipped ${skippedNonDolphinFiles}`)
+        parts.push(`non-Dolphin House files skipped ${skippedNonDolphinFiles}`)
       }
       if (failures.length > 0) {
         parts.push(`failed ${failures.length}`)
@@ -595,15 +595,32 @@ export function CalendarClient({ events: initialEvents, tasks }: { events: Calen
               {syncing ? 'Syncing…' : 'Sync Google'}
             </button>
           )}
-          <button className="btn-ghost text-sm" onClick={handleExportIcs} disabled={exporting}>
-            {exporting ? 'Exporting…' : 'Export ICS'}
-          </button>
-          <button className="btn-ghost text-sm" onClick={() => dolphinHouseImportInputRef.current?.click()} disabled={importing}>
-            {importing ? 'Importing…' : 'Import Dolphin House Tasks'}
-          </button>
-          <button className="btn-ghost text-sm" onClick={() => importInputRef.current?.click()} disabled={importing}>
-            {importing ? 'Importing…' : 'Import ICS'}
-          </button>
+          <div className="flex items-center gap-2 rounded-lg border border-border bg-surface/40 px-2 py-1">
+            <button
+              className="btn-ghost text-sm"
+              onClick={handleExportIcs}
+              disabled={exporting}
+              title="Export visible calendar range as an ICS file"
+            >
+              {exporting ? 'Exporting…' : 'Export ICS'}
+            </button>
+            <button
+              className="btn-ghost text-sm"
+              onClick={() => dolphinHouseImportInputRef.current?.click()}
+              disabled={importing}
+              title="Import Dolphin House task exports"
+            >
+              {importing ? 'Importing DH…' : 'Import Dolphin House Tasks'}
+            </button>
+            <button
+              className="btn-ghost text-sm"
+              onClick={() => importInputRef.current?.click()}
+              disabled={importing}
+              title="Import a generic ICS file"
+            >
+              {importing ? 'Importing ICS…' : 'Import ICS'}
+            </button>
+          </div>
           <button className="btn-primary" onClick={() => setModal({ type: 'create', date: today })}>
             Add event
           </button>
