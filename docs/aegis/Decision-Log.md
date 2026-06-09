@@ -101,12 +101,12 @@ Use one section per governed item (feature, integration, release, or external tr
 - Date: 2026-06-09
 - Scope Summary: Mid-week closeout checkpoint for migration baseline finalization, Google sync hardening, and runtime scenario validation status.
 - Current Gate: 4 — Release Approved (stability hardening cycle)
-- PM Decision: APPROVED WITH HOLD — Maintain stability posture. Do not expand sync timing/scope until blocked runtime scenarios are completed.
+- PM Decision: APPROVED — Stability checkpoint objectives met. Maintain current sync scope; any future expansion requires separate decision entry.
 - Finance/Compliance Decision: APPROVED — No additional external spend or contractual dependency introduced.
 - Cyber Decision: APPROVED WITH CONSTRAINTS — Keep pull-only sync model and maintain authenticated-only access; no webhook, write-sync, or bi-directional expansion.
-- Lead PA Decision: APPROVED — Accept current checkpoint (migration + hardening + 3/5 runtime scenarios). Carry remaining runtime validation into next execution window.
+- Lead PA Decision: APPROVED — Accept checkpoint as complete (migration + hardening + 5/5 runtime scenarios).
 - User Approval/Waiver: Requested execution of both runtime matrix run and closeout summary completed.
-- Risks Accepted: Temporary delay of final two runtime scenarios in exchange for deterministic, low-risk execution without introducing synthetic Google mocks into production route logic.
+- Risks Accepted: Maintain pull-only sync model while expansion remains deferred to a future governed decision cycle.
 - Rollback Plan: If sync reliability degrades, keep manual pull-only usage and disable auto-sync guidance until remaining scenarios are validated and defects remediated.
 - Evidence Links: docs/aegis/Stability-Validation-Report-2026-06-09.md · docs/aegis/PA-Execution-Board.md · src/app/api/calendar/sync/route.ts · prisma/migrations/20260609110606_baseline_2026_06_09/migration.sql
-- Notes: Runtime scenario matrix status is 3/5 complete. Remaining blocked scenarios require valid Google OAuth fixture account and deterministic fixture calendar events.
+- Notes: Runtime scenario matrix status is 5/5 complete. Repeated pulls validated idempotency (81/81 distinct Google IDs). Local edit preservation validated (`conflicts=1` with preserved local title).

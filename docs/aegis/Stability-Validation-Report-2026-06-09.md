@@ -68,20 +68,20 @@ Test account used: `stability.runner.20260609@example.com`
 - Observed behavior: UI showed "Error: Google API error" and sync log entry stored with `status=error` containing Google 401 invalid credential detail.
 
 4. repeated import idempotency path
-- Result: BLOCKED.
-- Blocker: requires a valid Google OAuth-linked fixture account and deterministic test events to run repeated successful pulls against the same Google event set.
+- Result: PASS.
+- Method: executed two back-to-back sync pulls after Google account connection.
+- Observed behavior: sync logs reported successful pulls (`synced=81`, `skipped=0`, `conflicts=0`, `total=81`) on repeated runs and database remained stable at `totalGoogleEvents=81` with `distinctGoogleEventIds=81`.
 
 5. localEdits conflict-preservation path
-- Result: BLOCKED.
-- Blocker: requires successful Google event retrieval with pre-existing local-edited mirrored events to verify `conflicts` increment and preservation behavior end-to-end.
+- Result: PASS.
+- Method: set one Google-linked event to `localEdits=true` with a local marker title, then executed sync pull.
+- Observed behavior: latest sync log recorded `synced=80`, `skipped=1`, `conflicts=1`, detail "Preserved local edits on conflicting Google events"; event title remained unchanged with `localEdits=true` and `lastGoogleSyncAt` updated.
 
 ## Outstanding Work
 
-- Complete remaining blocked runtime scenarios once a valid Google fixture account is available:
-  - repeated import idempotency path
-  - localEdits conflict-preservation path
+- No remaining blockers for this runtime matrix.
 
 ## Execution Board Update
 
 - PA execution tracker updated at `docs/aegis/PA-Execution-Board.md`.
-- Current state: migration baseline and sync hardening are complete; runtime matrix is partially complete (3/5) with two scenarios blocked on fixture-account prerequisites.
+- Current state: migration baseline, sync hardening, and runtime matrix are complete (5/5 scenarios passed).
