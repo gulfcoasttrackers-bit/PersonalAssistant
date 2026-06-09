@@ -74,3 +74,21 @@ Use one section per governed item (feature, integration, release, or external tr
 - Rollback Plan: Revert to previous commit and prior local DB state if baseline migration validation fails; keep Google sync in manual mode only.
 - Evidence Links: docs/aegis/Stability-Decision-Memo-2026-05-12.md · prisma/schema.prisma · src/app/api/calendar/sync/route.ts · src/lib/auth.ts
 - Notes: Any attempt to introduce background sync, write-sync, or multi-calendar logic before baseline migration and regression completion is out of scope.
+
+---
+
+## Entry 004 — Stability Decisions Refresh (Week Of 2026-06-09)
+
+- Item ID: PA-003
+- Date: 2026-06-09
+- Scope Summary: Reconfirm and operationalize this week's stability priorities by finalizing the Prisma migration baseline path and constraining Google sync timing to prevent scope drift.
+- Current Gate: 4 — Release Approved (stability hardening cycle)
+- PM Decision: APPROVED — Migration history is mandatory source of schema truth this week. Baseline migration must be created and committed before any additional schema or sync-scope changes.
+- Finance/Compliance Decision: APPROVED — No new paid integrations or vendor commitments required for this week's scope.
+- Cyber Decision: APPROVED WITH CONSTRAINTS — Keep sync authenticated, pull-only, and constrained to existing timing model; no new background/webhook/bi-directional behaviors in this cycle.
+- Lead PA Decision: APPROVED — Execute implementation sequence in docs/aegis/Stability-Decision-Memo-2026-06-09.md and defer sync expansion until acceptance criteria are met.
+- User Approval/Waiver: PM-directed weekly stability decision run requested and delivered.
+- Risks Accepted: Temporary feature deferral to reduce migration drift risk and preserve rollback reliability.
+- Rollback Plan: Revert migration baseline commit and restore prior local DB state if baseline validation fails; keep Google sync manual pull-only until defects are remediated.
+- Evidence Links: docs/aegis/Stability-Decision-Memo-2026-06-09.md · prisma/schema.prisma · src/app/api/calendar/sync/route.ts · src/components/CalendarAutoSyncAgent.tsx
+- Notes: Baseline migration created and applied on 2026-06-09 as prisma/migrations/20260609110606_baseline_2026_06_09/migration.sql; migrate deploy validation returned no pending migrations.

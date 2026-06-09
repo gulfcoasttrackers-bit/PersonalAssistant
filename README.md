@@ -114,10 +114,18 @@ This runs Personal Assistant at `http://127.0.0.1:3001` with a matching `NEXTAUT
 | `npm run build` | Build for production |
 | `npm run start` | Run the production build |
 | `npm run lint` | Run ESLint |
-| `npm run db:push` | Push schema to database (no migration history) |
-| `npm run db:migrate` | Run Prisma migrations (development) |
+| `npm run db:migrate` | Create/apply Prisma migrations in development |
+| `npm run db:deploy` | Apply committed Prisma migrations (deploy/clean environments) |
+| `npm run db:push` | Emergency local recovery only (bypasses migration history) |
 | `npm run db:generate` | Regenerate Prisma client after schema changes |
 | `npm run db:studio` | Open Prisma Studio (visual DB browser) at port 5555 |
+
+### Prisma Migration Policy (Stability)
+
+- Migration history is the source of truth for schema evolution.
+- Use `npm run db:migrate` when changing `prisma/schema.prisma`.
+- Use `npm run db:deploy` in clean or release-like environments.
+- Do not use `npm run db:push` for normal feature development.
 
 ---
 
