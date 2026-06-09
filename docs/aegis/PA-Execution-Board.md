@@ -8,7 +8,7 @@ Cycle: Stability decisions week (PA-003)
 
 | Item | Status | Owner | Notes |
 |---|---|---|---|
-| Runtime sync scenario matrix (manual auth/session checks) | In progress | PM | Requires authenticated app session + Google-linked/non-linked account states to validate `needs_google`, refresh-failure, API error, idempotency, and local-edits conflict paths. |
+| Runtime sync scenario matrix (manual auth/session checks) | In progress (3/5 scenarios executed) | PM | Completed: `needs_google`, invalid refresh-token handling, Google API error path. Blocked pending valid Google OAuth test account + fixture calendar data: repeated import idempotency and local-edits conflict-preservation. |
 
 ## Done
 
@@ -20,10 +20,11 @@ Cycle: Stability decisions week (PA-003)
 | Migration-first workflow enforced in scripts/docs | Done | PM | `package.json`, `README.md` |
 | Calendar sync hardening without scope expansion | Done | PM | `src/app/api/calendar/sync/route.ts` |
 | Regression checkpoint: lint + build | Done | PM | `docs/aegis/Stability-Validation-Report-2026-06-09.md` |
+| Runtime matrix partial execution evidence captured | Done | PM | `docs/aegis/Stability-Validation-Report-2026-06-09.md` |
 
 ## Next Up
 
 | Item | Target | Gate |
 |---|---|---|
-| Complete runtime sync scenario matrix and append evidence | 2026-06-10 | Gate 4 stability hardening |
+| Complete remaining runtime matrix scenarios with valid Google fixture account | 2026-06-10 | Gate 4 stability hardening |
 | Publish weekly closeout summary and decision for next sync-scope review | 2026-06-13 | Gate checkpoint |

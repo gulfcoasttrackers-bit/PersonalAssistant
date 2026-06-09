@@ -42,22 +42,46 @@ Validation evidence for stability decisions in the week-of 2026-06-09 cycle:
 
 ## Acceptance Criteria Status
 
-- Baseline migration exists and is committed in repo: PASS (artifact created; pending commit).
+- Baseline migration exists and is committed in repo: PASS.
 - Deploy migration path validates on current environment: PASS.
 - Sync remains pull-only this week: PASS.
 - No scope expansion to bi-directional/background/webhook: PASS.
 - Governance docs updated: PASS.
 
+## Runtime Sync Scenario Matrix (Authenticated Session)
+
+Test account used: `stability.runner.20260609@example.com`
+
+1. needs_google path
+- Method: signed-in user with no Google account row, clicked "Sync Google" from Calendar.
+- Result: PASS.
+- Observed behavior: UI switched to "Connect Google Calendar" and sync log entry stored with `status=needs_google`, detail "Google account not connected".
+
+2. expired/invalid refresh token path
+- Method: seeded expired token + invalid refresh token in `Account`, then clicked "Sync Google".
+- Result: PASS.
+- Observed behavior: UI switched to "Connect Google Calendar" and sync log entry stored with `status=needs_google`, detail "Refresh token is invalid, expired, or timed out".
+
+3. Google API error path
+- Method: seeded non-expired invalid access token, then clicked "Sync Google".
+- Result: PASS.
+- Observed behavior: UI showed "Error: Google API error" and sync log entry stored with `status=error` containing Google 401 invalid credential detail.
+
+4. repeated import idempotency path
+- Result: BLOCKED.
+- Blocker: requires a valid Google OAuth-linked fixture account and deterministic test events to run repeated successful pulls against the same Google event set.
+
+5. localEdits conflict-preservation path
+- Result: BLOCKED.
+- Blocker: requires successful Google event retrieval with pre-existing local-edited mirrored events to verify `conflicts` increment and preservation behavior end-to-end.
+
 ## Outstanding Work
 
-- Execute runtime sync scenario tests with authenticated session coverage:
-  - needs_google path
-  - expired/invalid refresh token path
-  - Google API error path
+- Complete remaining blocked runtime scenarios once a valid Google fixture account is available:
   - repeated import idempotency path
   - localEdits conflict-preservation path
 
 ## Execution Board Update
 
 - PA execution tracker updated at `docs/aegis/PA-Execution-Board.md`.
-- Current state: migration baseline and sync hardening are complete; runtime sync scenario matrix remains in progress pending authenticated manual session validation.
+- Current state: migration baseline and sync hardening are complete; runtime matrix is partially complete (3/5) with two scenarios blocked on fixture-account prerequisites.
