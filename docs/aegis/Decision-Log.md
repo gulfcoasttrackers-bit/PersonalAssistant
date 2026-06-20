@@ -2,7 +2,7 @@
 
 Project: Personal Assistant
 Owner: PM
-Last Updated: 2026-06-09
+Last Updated: 2026-06-20
 
 Use one section per governed item (feature, integration, release, or external transaction workflow).
 
@@ -20,6 +20,20 @@ Use one section per governed item (feature, integration, release, or external tr
 - Rollback Plan:
 - Evidence Links:
 - Notes:
+
+## Documentation Update Protocol (No Prompt Needed)
+
+Trigger rules:
+- Record a new entry whenever a governed decision is approved, deferred, blocked, or carried forward.
+- Update Last Updated on every log mutation.
+- If a decision remains open past target date, add a carry-forward entry within 24h.
+- For scope expansion proposals, record PM, Cyber, and Finance/Compliance states before implementation begins.
+
+Minimum entry quality bar:
+- One clear owner for each decision line.
+- Explicit status word: APPROVED, PENDING, BLOCKED, or APPROVED WITH CONSTRAINTS.
+- Concrete rollback position and risk note.
+- Evidence links to execution board, validation artifacts, and affected implementation docs.
 
 ---
 
@@ -110,3 +124,21 @@ Use one section per governed item (feature, integration, release, or external tr
 - Rollback Plan: If sync reliability degrades, keep manual pull-only usage and disable auto-sync guidance until remaining scenarios are validated and defects remediated.
 - Evidence Links: docs/aegis/Stability-Validation-Report-2026-06-09.md · docs/aegis/PA-Execution-Board.md · src/app/api/calendar/sync/route.ts · prisma/migrations/20260609110606_baseline_2026_06_09/migration.sql
 - Notes: Runtime scenario matrix status is 5/5 complete. Repeated pulls validated idempotency (81/81 distinct Google IDs). Local edit preservation validated (`conflicts=1` with preserved local title).
+
+---
+
+## Entry 006 — Status Carry-Forward (Open Decision Tracking)
+
+- Item ID: PA-003
+- Date: 2026-06-20
+- Scope Summary: Carry forward unresolved weekly closeout publication and next sync-scope review decision so ownership and gate status remain explicit.
+- Current Gate: 4 — Release Approved (stability operations follow-through)
+- PM Decision: PENDING — Publish closeout summary and record explicit decision for next sync-scope review before approving any scope expansion.
+- Finance/Compliance Decision: PENDING (CONDITIONAL) — No action required for current pull-only scope. Re-review required if future sync expansion introduces paid integrations or vendor commitments.
+- Cyber Decision: PENDING (CONDITIONAL) — Any proposed sync expansion must preserve authenticated-only access and include security controls review before approval.
+- Lead PA Decision: PENDING — Hold current pull-only scope until PM, Cyber, and conditional Finance checks are recorded for the next gate.
+- User Approval/Waiver: Active — Continue operating under current pull-only model while decision remains open.
+- Risks Accepted: Schedule slippage on governance closeout and potential scope ambiguity if implementation advances without recorded gate decision.
+- Rollback Plan: Maintain current pull-only sync behavior and defer all sync-scope expansion until governance decisions are posted and approved.
+- Evidence Links: docs/aegis/PA-Execution-Board.md · docs/aegis/Stability-Validation-Report-2026-06-09.md · docs/aegis/Stability-Decision-Memo-2026-06-09.md
+- Notes: Open decision target was 2026-06-13 and is now carried forward. Fixture-account playbook target remains 2026-06-20.

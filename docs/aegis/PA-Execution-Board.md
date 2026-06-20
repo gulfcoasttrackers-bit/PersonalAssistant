@@ -1,14 +1,34 @@
 # PA Execution Board
 
-Last Updated: 2026-06-09
+Last Updated: 2026-06-20
 Owner: PM (@piper)
-Cycle: Stability decisions week (PA-003)
+Cycle: Post-stability closeout and next-gate decision (PA-003)
+
+## Documentation Cadence (No Prompt Needed)
+
+Purpose: keep governance docs current without manual instruction.
+
+| Trigger | Required Update | Owner | SLA |
+|---|---|---|---|
+| Any item status change (In progress, Done, Blocked, Pending) | Update this board row and notes | PM (@piper) | Same day |
+| Any gate decision made or deferred | Add or update Decision Log entry | PM (@piper) | Same day |
+| Weekly checkpoint (Friday or cycle close) | Publish closeout summary and refresh Last Updated date | PM (@piper) | Within 24h |
+| Proposed sync-scope expansion | Record PM/Cyber/Finance decision states before implementation | PM (@piper) | Before code change |
+
+Checklist (run at each checkpoint):
+- Last Updated date is current.
+- In Progress, Done, and Next Up reflect actual state.
+- Open decisions have owner, due date, and gate context.
+- Decision Log link/evidence is present for each governed decision.
+- Overdue items are explicitly marked carry-forward.
 
 ## In Progress
 
 | Item | Status | Owner | Notes |
 |---|---|---|---|
-| Weekly closeout packet for gate review | In progress | PM | Runtime matrix is complete. Preparing final closeout packet for weekly gate checkpoint publication. |
+| Weekly closeout packet for gate review | In progress | PM | Runtime matrix remains complete. Final closeout publication and decision posting are still pending. |
+| Next sync-scope review decision publication | Pending (overdue) | PM | Target was 2026-06-13. Decision remains open and must be recorded in Decision Log before scope changes. |
+| Fixture-account playbook definition | Pending (due today) | PM | Target is 2026-06-20. Needed for repeatable quarterly sync validation operations. |
 
 ## Done
 
@@ -26,5 +46,5 @@ Cycle: Stability decisions week (PA-003)
 
 | Item | Target | Gate |
 |---|---|---|
-| Publish weekly closeout summary and decision for next sync-scope review | 2026-06-13 | Gate checkpoint |
+| Publish weekly closeout summary and decision for next sync-scope review | 2026-06-20 (carry-forward from 2026-06-13) | Gate checkpoint |
 | Define fixture-account playbook for repeatable quarterly sync validation | 2026-06-20 | Stability operations |
