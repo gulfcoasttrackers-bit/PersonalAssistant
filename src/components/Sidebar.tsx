@@ -45,6 +45,15 @@ const navItems = [
       </svg>
     ),
   },
+  {
+    href: '/expedition-planner',
+    label: 'Expedition Planner',
+    icon: (
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 2l3.5 7.1L23 10l-5.5 5.4L19 23l-7-3.7L5 23l1.5-7.6L1 10l7.5-.9L12 2z" />
+      </svg>
+    ),
+  },
 ]
 
 export function Sidebar({ user }: SidebarProps) {

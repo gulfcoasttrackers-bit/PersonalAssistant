@@ -2,7 +2,7 @@
 
 Project: Personal Assistant
 Owner: PM
-Last Updated: 2026-06-20
+Last Updated: 2026-06-25
 
 Use one section per governed item (feature, integration, release, or external transaction workflow).
 
@@ -142,3 +142,74 @@ Minimum entry quality bar:
 - Rollback Plan: Maintain current pull-only sync behavior and defer all sync-scope expansion until governance decisions are posted and approved.
 - Evidence Links: docs/aegis/PA-Execution-Board.md · docs/aegis/Stability-Validation-Report-2026-06-09.md · docs/aegis/Stability-Decision-Memo-2026-06-09.md
 - Notes: Open decision target was 2026-06-13 and is now carried forward. Fixture-account playbook target remains 2026-06-20.
+
+---
+
+## Entry 007 — Runtime Discipline Checkpoint (Node v20 + Audit Visibility)
+
+- Item ID: PA-004
+- Date: 2026-06-23
+- Scope Summary: Enforce Node v20 runtime baseline this week, execute health checks on the baseline runtime, and verify elevated audit visibility remains operational.
+- Current Gate: 4 — Release Approved (operational discipline checkpoint)
+- PM Decision: APPROVED — Node v20 baseline guardrails enforced and health checks executed under Node v20.20.2.
+- Finance/Compliance Decision: APPROVED — No new external spend, vendor dependency, or contractual impact.
+- Cyber Decision: APPROVED WITH CONSTRAINTS — Keep pull-only authenticated sync posture unchanged; maintain same-day audit logging for runtime discipline checkpoints.
+- Lead PA Decision: APPROVED — Runtime discipline checkpoint passed with no blocking regressions.
+- User Approval/Waiver: Requested runtime-discipline execution completed.
+- Risks Accepted: Environment drift risk persists if commands are run without loading `.env.local`; mitigated by explicit environment loading in deploy-path checks.
+- Rollback Plan: If runtime issues appear on Node v20, pin to the last known-good commit and keep current pull-only sync behavior while remediating.
+- Evidence Links: package.json · .nvmrc · .npmrc · README.md · docs/aegis/PA-Execution-Board.md
+- Notes: Validation results on 2026-06-23: `node --version` confirmed v20.20.2 after `nvm use 20`; `npm run lint` PASS; `npm run build` PASS; `npm run db:generate` PASS; `npm run db:deploy` PASS with `.env.local` loaded (no pending migrations).
+
+---
+
+## Entry 008 — Nightly Handoff Pin (Tomorrow Start Queue)
+
+- Item ID: PA-005
+- Date: 2026-06-23
+- Scope Summary: Pin end-of-day status and define first-start execution queue for 2026-06-24, including pre-scheduled portfolio kickoff sessions.
+- Current Gate: 4 — Release Approved (operations continuity)
+- PM Decision: APPROVED — Handoff is current and tomorrow queue is sequenced.
+- Finance/Compliance Decision: APPROVED — No funding or contractual changes introduced by the handoff updates.
+- Cyber Decision: APPROVED WITH CONSTRAINTS — Preserve current authenticated, pull-only sync posture while closeout decision remains pending.
+- Lead PA Decision: APPROVED — Resume from documented queue without additional discovery step.
+- User Approval/Waiver: Requested handoff pin and tomorrow-start queue completed.
+- Risks Accepted: Open closeout and sync-scope decision remain schedule-risk items until explicitly posted.
+- Rollback Plan: Continue with current stable scope and defer any sync expansion until closeout decision entry is recorded.
+- Evidence Links: docs/aegis/PA-Execution-Board.md · docs/aegis/Decision-Log.md
+- Notes: Calendar planning events for 2026-06-24 afternoon are scheduled for both new projects: MiSO (P-002) and Personal Travel Log and Scrapbook.
+
+---
+
+## Entry 009 — Personal Assistant Governance Closeout (2026-06-25)
+
+- Item ID: PA-003
+- Date: 2026-06-25
+- Scope Summary: Close the overdue weekly governance loop by publishing the Personal Assistant closeout summary, recording the next sync-scope decision, and confirming fixture-account playbook status while preserving the current rollback posture.
+- Current Gate: 4 — Release Approved (stability operations follow-through)
+- PM Decision: APPROVED WITH CONSTRAINTS — Closeout publication and sync-scope decision are complete; maintain pull-only posture and carry forward fixture-account playbook completion.
+- Finance/Compliance Decision: APPROVED — No funding, vendor, or paid-integration review required under unchanged pull-only scope.
+- Cyber Decision: APPROVED WITH CONSTRAINTS — Continue authenticated pull-only sync behavior; require security control review before any scope expansion.
+- Lead PA Decision: APPROVED WITH CONSTRAINTS — Continue current operating mode and block sync-scope expansion until carry-forward governance items are complete.
+- User Approval/Waiver: Active — Constrained carry-forward accepted for fixture-account playbook completion.
+- Risks Accepted: Temporary governance carry-forward risk on fixture-account playbook completion and evidence lag risk on cross-portfolio owner report-back artifacts.
+- Rollback Plan: Maintain current pull-only authenticated sync behavior and keep rollback endpoint scope paused unless explicitly re-prioritized.
+- Evidence Links: docs/aegis/PA-Execution-Board.md · docs/aegis/Decision-Log.md · docs/PM-Closeout-2026-06-25.md
+- Notes: Entry activated as final closeout record on 2026-06-25. Remaining open item is fixture-account playbook completion, due next cycle checkpoint (2026-06-26).
+
+---
+
+## Entry 010 — Personal Travel Log and Scrapbook (P-003) Scaffold Authorization (2026-06-26)
+
+- Item ID: P-003-001
+- Date: 2026-06-26
+- Scope Summary: Gate review and scaffold authorization for Personal Travel Log and Scrapbook (P-003). PRD v1 boundary and stack/persistence decision presented and approved by PM; app-shell scaffold executed and build validated.
+- Current Gate: 1 — Scaffold Authorized
+- PM Decision: APPROVED — PRD v1 boundary locked (trip management, journal entries, scrapbook timeline, tags/search); scope exclusions confirmed (public sharing, AI edits, multi-tenant).
+- Stack Decision: APPROVED — Next.js 14 + Prisma + SQLite (local-first), consistent with Personal Assistant toolchain.
+- Lead PA Decision: APPROVED — Build passes zero errors; Prisma generate + db push clean; all 8 routes rendered.
+- User Approval/Waiver: Active — Both gate conditions confirmed Green before scaffold execution.
+- Risks Accepted: Media storage strategy deferred to v2; export/archive format deferred to v2.
+- Rollback Plan: Delete project folder; no external services or shared infra affected (local-only SQLite).
+- Evidence Links: docs/PRD-v1-2026-06-26.md (in project folder) · prisma/schema.prisma · build output (8/8 pages, zero errors)
+- Notes: Scaffold delivered 2026-06-26. Pages: /, /trips, /trips/new, /trips/[id], /timeline. APIs: /api/trips, /api/trips/[id], /api/trips/[id]/entries. Next milestone: wire New Trip form to POST /api/trips and add journal entry detail page.

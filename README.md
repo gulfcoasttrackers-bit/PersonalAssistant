@@ -35,7 +35,7 @@ A self-hosted personal productivity web app for managing daily tasks, ongoing pr
 
 ## Prerequisites
 
-- **Node.js** v20+ (use [nvm](https://github.com/nvm-sh/nvm): `nvm use 20`)
+- **Node.js** v20.x baseline (recommended: 20.20.2 via [nvm](https://github.com/nvm-sh/nvm): `nvm use 20`)
 - **PostgreSQL** running locally (default port `5432`)
 
 ---

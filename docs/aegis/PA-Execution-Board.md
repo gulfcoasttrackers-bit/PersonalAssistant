@@ -1,6 +1,6 @@
 # PA Execution Board
 
-Last Updated: 2026-06-20
+Last Updated: 2026-06-25
 Owner: PM (@piper)
 Cycle: Post-stability closeout and next-gate decision (PA-003)
 
@@ -26,9 +26,8 @@ Checklist (run at each checkpoint):
 
 | Item | Status | Owner | Notes |
 |---|---|---|---|
-| Weekly closeout packet for gate review | In progress | PM | Runtime matrix remains complete. Final closeout publication and decision posting are still pending. |
-| Next sync-scope review decision publication | Pending (overdue) | PM | Target was 2026-06-13. Decision remains open and must be recorded in Decision Log before scope changes. |
-| Fixture-account playbook definition | Pending (due today) | PM | Target is 2026-06-20. Needed for repeatable quarterly sync validation operations. |
+| Fixture-account playbook definition | Pending (carry-forward) | PM | Closeout published on 2026-06-25, but fixture-account playbook remains incomplete; moved to next-cycle checkpoint. |
+| Rollback endpoint scope decision pin | Paused (intentional) | PM | Rollback endpoint expansion remains explicitly paused until PM re-prioritization; no new rollback API scope authorized. |
 
 ## Done
 
@@ -38,13 +37,34 @@ Checklist (run at each checkpoint):
 | Baseline migration created and applied | Done | PM | `prisma/migrations/20260609110606_baseline_2026_06_09/migration.sql` |
 | Migration deploy path validated (`db:deploy`) | Done | PM | `docs/aegis/Stability-Validation-Report-2026-06-09.md` |
 | Migration-first workflow enforced in scripts/docs | Done | PM | `package.json`, `README.md` |
+| Node v20 baseline guardrails enforced | Done | PM | `package.json`, `.nvmrc`, `.npmrc`, `README.md` |
 | Calendar sync hardening without scope expansion | Done | PM | `src/app/api/calendar/sync/route.ts` |
 | Regression checkpoint: lint + build | Done | PM | `docs/aegis/Stability-Validation-Report-2026-06-09.md` |
 | Runtime sync scenario matrix (5/5) completed | Done | PM | `docs/aegis/Stability-Validation-Report-2026-06-09.md` |
+| Runtime health checks (Node v20) and audit visibility verification | Done | PM | `docs/aegis/Decision-Log.md` |
+| Weekly closeout packet for gate review | Done | PM | `docs/PM-Closeout-2026-06-25.md` |
+| Next sync-scope review decision publication | Done | PM | `docs/aegis/Decision-Log.md` (Entry 009, 2026-06-25) |
 
 ## Next Up
 
 | Item | Target | Gate |
 |---|---|---|
-| Publish weekly closeout summary and decision for next sync-scope review | 2026-06-20 (carry-forward from 2026-06-13) | Gate checkpoint |
-| Define fixture-account playbook for repeatable quarterly sync validation | 2026-06-20 | Stability operations |
+| Finalize fixture-account playbook for repeatable quarterly sync validation | 2026-06-26 | Stability operations |
+| Reconfirm constrained sync posture remains unchanged after fixture-playbook publication | 2026-06-26 | Gate checkpoint |
+| Re-open rollback endpoint scope only if PM explicitly re-prioritizes | On demand | Scope governance |
+
+## Handoff Pin (2026-06-24 Morning)
+
+Where we are:
+- Node v20 runtime discipline is enforced (`package.json` engines + `.nvmrc` + `.npmrc`).
+- Health checks completed on Node v20.20.2: lint PASS, build PASS, db:generate PASS, db:deploy PASS (with `.env.local` loaded).
+- Elevated audit visibility path verified operational (`PA-Execution-Board` and `Decision-Log` updated same day).
+- Calendar ICS import policy is now replace-latest for existing imported events, with replacement audit payloads persisted to `calendarSyncLog.detail`.
+- Live validation completed with real Dolphin House export (`dolphin-house-open-tasks.ics`): second import reported `replaced 1` after forcing one local-edited imported record for verification.
+- Rollback endpoint implementation is explicitly paused (pinned) per PM direction; no rollback API code was added this session.
+
+Start here tomorrow (in order):
+1. Finalize fixture-account playbook definition for quarterly sync validation and link evidence in this board.
+2. Confirm Decision Log Entry 009 remains accurate after fixture-playbook completion and note any new constraints.
+3. Re-open rollback endpoint scope only when PM re-prioritizes it; if resumed, design restore-from-latest-replacement-audit flow first.
+4. Refresh cross-portfolio command board once owner report-back evidence is posted for open Amber lanes.

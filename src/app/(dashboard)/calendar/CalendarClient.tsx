@@ -393,7 +393,7 @@ export function CalendarClient({ events: initialEvents, tasks }: { events: Calen
         return
       }
 
-      const totals = { imported: 0, updated: 0, skipped: 0, conflicts: 0 }
+      const totals = { imported: 0, updated: 0, replaced: 0, skipped: 0, conflicts: 0 }
       const failures: string[] = []
       let skippedNonDolphinFiles = 0
 
@@ -422,6 +422,7 @@ export function CalendarClient({ events: initialEvents, tasks }: { events: Calen
 
         totals.imported += result.data?.imported ?? 0
         totals.updated += result.data?.updated ?? 0
+        totals.replaced += result.data?.replaced ?? 0
         totals.skipped += result.data?.skipped ?? 0
         totals.conflicts += result.data?.conflicts ?? 0
       }
@@ -436,6 +437,9 @@ export function CalendarClient({ events: initialEvents, tasks }: { events: Calen
         `Imported ${totals.imported}`,
         `updated ${totals.updated}`,
       ]
+      if (totals.replaced > 0) {
+        parts.push(`replaced ${totals.replaced}`)
+      }
       if (totals.conflicts > 0) {
         parts.push(`conflicts ${totals.conflicts}`)
       }

@@ -135,12 +135,48 @@ export async function POST(req: Request) {
   let imported = 0
   let updated = 0
   let skipped = 0
-  let conflicts = 0
+  let replaced = 0
+  const replacementAudit: Array<{
+    uid: string
+    eventId: string
+    replacedAt: string
+    previous: {
+      title: string
+      description: string | null
+      startTime: string
+      endTime: string
+      allDay: boolean
+      source: string
+      localEdits: boolean
+      lastLocalEditAt: string | null
+      lastGoogleSyncAt: string | null
+    }
+    incoming: {
+      title: string
+      description: string | null
+      startTime: string
+      endTime: string
+      allDay: boolean
+      source: 'IMPORTED'
+    }
+  }> = []
 
   for (const item of parsedEvents) {
     const existing = await prisma.event.findUnique({
       where: { externalImportUid: item.uid },
-      select: { id: true, userId: true, localEdits: true },
+      select: {
+        id: true,
+        userId: true,
+        title: true,
+        description: true,
+        startTime: true,
+        endTime: true,
+        allDay: true,
+        source: true,
+        localEdits: true,
+        lastLocalEditAt: true,
+        lastGoogleSyncAt: true,
+      },
     })
 
     if (existing && existing.userId !== userId) {
@@ -148,13 +184,32 @@ export async function POST(req: Request) {
       continue
     }
 
-    if (existing?.localEdits) {
-      conflicts++
-      skipped++
-      continue
-    }
-
     if (existing) {
+      replacementAudit.push({
+        uid: item.uid,
+        eventId: existing.id,
+        replacedAt: new Date().toISOString(),
+        previous: {
+          title: existing.title,
+          description: existing.description,
+          startTime: existing.startTime.toISOString(),
+          endTime: existing.endTime.toISOString(),
+          allDay: existing.allDay,
+          source: existing.source,
+          localEdits: existing.localEdits,
+          lastLocalEditAt: existing.lastLocalEditAt ? existing.lastLocalEditAt.toISOString() : null,
+          lastGoogleSyncAt: existing.lastGoogleSyncAt ? existing.lastGoogleSyncAt.toISOString() : null,
+        },
+        incoming: {
+          title: item.title,
+          description: item.description,
+          startTime: item.startTime.toISOString(),
+          endTime: item.endTime.toISOString(),
+          allDay: item.allDay,
+          source: 'IMPORTED',
+        },
+      })
+
       await prisma.event.update({
         where: { id: existing.id },
         data: {
@@ -165,9 +220,13 @@ export async function POST(req: Request) {
           allDay: item.allDay,
           source: 'IMPORTED',
           localEdits: false,
+          lastLocalEditAt: null,
         },
       })
       updated++
+      if (existing.localEdits) {
+        replaced++
+      }
       continue
     }
 
@@ -186,11 +245,42 @@ export async function POST(req: Request) {
     imported++
   }
 
+  if (replacementAudit.length > 0) {
+    try {
+      const MAX_AUDIT_ENTRIES = 100
+      const truncated = replacementAudit.length > MAX_AUDIT_ENTRIES
+      const auditEntries = replacementAudit.slice(0, MAX_AUDIT_ENTRIES)
+      const detailPayload = {
+        policy: 'replace_existing_with_latest',
+        totalReplacements: replacementAudit.length,
+        truncated,
+        omitted: truncated ? replacementAudit.length - MAX_AUDIT_ENTRIES : 0,
+        entries: auditEntries,
+      }
+
+      await prisma.calendarSyncLog.create({
+        data: {
+          userId,
+          trigger: 'import',
+          status: 'replacement_audit',
+          synced: updated,
+          skipped,
+          conflicts: 0,
+          total: parsedEvents.length,
+          detail: JSON.stringify(detailPayload),
+        },
+      })
+    } catch {
+      // Audit logging must not block successful import.
+    }
+  }
+
   return NextResponse.json({
     imported,
     updated,
     skipped,
-    conflicts,
+    replaced,
+    conflicts: 0,
     total: parsedEvents.length,
   })
 }

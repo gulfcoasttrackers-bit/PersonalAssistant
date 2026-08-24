@@ -1,0 +1,395 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Portfolio Pilot//AppDev 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Portfolio Pilot 2026
+X-WR-TIMEZONE:America/Chicago
+X-WR-CALDESC:Portfolio Pilot Option 1 — YTC Revenue Sprint milestones, gate reviews, and execution checkpoints.
+
+BEGIN:VEVENT
+UID:pp-prelaunch-approvals-deadline@appdev.local
+DTSTART;VALUE=DATE:20260810
+DTEND;VALUE=DATE:20260811
+SUMMARY:⚠️ Pre-Launch Approvals DEADLINE
+DESCRIPTION:All 7 Portfolio Pilot pre-launch approval items must be resolved before execution start on 08/17/2026.\n\nItems include:\n• YTC monetization affiliate accounts\n• Channel analytics access\n• Studio equipment audit\n• B-GAE compliance research\n• Infrastructure provisioning\n• Budget authorization ($500/mo)\n• PMO governance sign-off\n\nOpen Portfolio Pilot → Approvals to review: http://127.0.0.1:8787/Portfolio%20Pilot/approvals.html
+CATEGORIES:Portfolio Pilot,Approvals
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-ytc-monetization-rails@appdev.local
+DTSTART;VALUE=DATE:20260810
+DTEND;VALUE=DATE:20260811
+SUMMARY:🎯 YTC — Monetization Rails Must Be Live
+DESCRIPTION:YouTube Creator App monetization infrastructure must be fully operational by this date:\n• Affiliate program accounts active\n• Sponsor intake form deployed\n• Lead capture / email list setup\n• Analytics dashboards configured\n\nThis is a hard prerequisite for Week 1 content publishing cadence.
+CATEGORIES:YTC,Milestone
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-execution-start@appdev.local
+DTSTART;VALUE=DATE:20260817
+DTEND;VALUE=DATE:20260824
+SUMMARY:🚀 Portfolio Pilot — EXECUTION START (Week 1)
+DESCRIPTION:Portfolio Pilot Option 1 — YTC Revenue Sprint begins.\n\nPlan v1 approved: May 1, 2026\nBudget cap: $500/month\nRunway: 26 months\n\nWeek 1 Priority Tasks (16 total):\n— PORTFOLIO: Finalize KPI baselines, confirm budget tracker, activate weekly pulse\n— YTC: Publish first video, activate affiliate links, test monetization rails\n— STUDIO: Define mix presets, verify turnaround SOP, document workflow\n— B-GAE: Start grant opportunity scan, define pilot concept scope\n— PMO: Stand up weekly review cadence, confirm gate criteria\n\nKPI Targets:\n• YTC: 2-3 videos/week cadence\n• Studio: 20% turnaround improvement by M1\n• B-GAE: Pilot concept ready by M3\n• Burn: ≤$500/month\n\nOrbit App: http://127.0.0.1:8787
+CATEGORIES:Portfolio Pilot,Execution
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-week1-end@appdev.local
+DTSTART;VALUE=DATE:20260823
+DTEND;VALUE=DATE:20260824
+SUMMARY:📋 Week 1 End — Pulse Review
+DESCRIPTION:End of Week 1 (Aug 17-23). Conduct weekly pulse review:\n• All 16 Week 1 tasks status check\n• KPI baseline vs actuals\n• Any blockers or scope changes\n• Week 2 task activation\n\nYTC must have at least 1 video published this week.
+CATEGORIES:Portfolio Pilot,Review
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-week2-end@appdev.local
+DTSTART;VALUE=DATE:20260830
+DTEND;VALUE=DATE:20260831
+SUMMARY:📋 Week 2 End — Pulse Review
+DESCRIPTION:End of Week 2 (Aug 24-30). Weekly pulse review.\n\nYTC: Maintain 2-3 publish cadence.\nStudio: Preset workflow operational.\nMonitor: Burn rate vs $500/mo cap.
+CATEGORIES:Portfolio Pilot,Review
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-week3-end@appdev.local
+DTSTART;VALUE=DATE:20260906
+DTEND;VALUE=DATE:20260907
+SUMMARY:📋 Week 3 End — Pulse Review
+DESCRIPTION:End of Week 3 (Aug 31 - Sep 6). Weekly pulse review.\n\nYTC: Leading revenue indicators should be visible (views trending, CTR, affiliate click-through).\nStudio: First mix preset in production use.
+CATEGORIES:Portfolio Pilot,Review
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-m1-gate@appdev.local
+DTSTART;VALUE=DATE:20260914
+DTEND;VALUE=DATE:20260915
+SUMMARY:🔴 M1 GATE REVIEW — Go/No-Go Decision
+DESCRIPTION:Milestone 1 Gate Review (end of Week 4 — Sep 7-13).\n\nGO criteria (ALL must pass):\n✅ YTC: 2-3 videos/week cadence maintained\n✅ YTC: 2+ monetization channels active (affiliate, sponsor, or lead capture)\n✅ YTC: Leading revenue indicators positive (views, CTR, engagement trending up)\n✅ Studio: 20% turnaround improvement achieved\n✅ Studio: Mix preset workflow operational\n✅ Burn: ≤$500/month confirmed\n\nNO-GO triggers contingency review:\n• Reassess budget allocation\n• Evaluate pivot options\n• Aegis governance escalation\n\nDecision log must be recorded in Portfolio Pilot.
+CATEGORIES:Portfolio Pilot,Gate Review
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-week5-end@appdev.local
+DTSTART;VALUE=DATE:20260920
+DTEND;VALUE=DATE:20260921
+SUMMARY:📋 Week 5 End — Pulse Review
+DESCRIPTION:End of Week 5 (Sep 14-20). First week post-M1 gate.\n\nYTC: Revenue signals strengthening. Begin tracking actual revenue (not just leading indicators).\nB-GAE: Grant research should be well underway.
+CATEGORIES:Portfolio Pilot,Review
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-week6-end@appdev.local
+DTSTART;VALUE=DATE:20260927
+DTEND;VALUE=DATE:20260928
+SUMMARY:📋 Week 6 End — Pulse Review
+DESCRIPTION:End of Week 6 (Sep 21-27). Weekly pulse review.\n\nYTC: Target first paid transaction this week or next.\nStudio: Direct revenue path (mixing/editing services) should be open.
+CATEGORIES:Portfolio Pilot,Review
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-bgae-grants-window@appdev.local
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261019
+SUMMARY:🌿 B-GAE Grant Application Window (Weeks 7-8)
+DESCRIPTION:B-GAE (Algae Eater) grant application submission window.\n\nTarget opportunities identified during Weeks 1-6 research phase.\nBudget: 10% of portfolio ($150 over 90 days)\n\nCompliance research must be complete before submission.\nPilot concept documentation required with applications.
+CATEGORIES:B-GAE,Grants
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-m2-gate@appdev.local
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261013
+SUMMARY:🔴 M2 GATE REVIEW + AlphaStream Unlock Decision
+DESCRIPTION:Milestone 2 Gate Review (end of Week 8 — Oct 5-11).\n\nGO criteria:\n✅ YTC: First paid revenue transaction confirmed\n✅ YTC: 3+ monetization channels active\n✅ Studio: Consistent production throughput supporting YTC volume\n✅ B-GAE: Grant applications submitted\n✅ Burn: ≤$500/month sustained\n\nAlphaStream Unlock Decision:\nIf YTC revenue signals are materializing → evaluate AlphaStream as non-dilutive funding source.\nAlphaStream hold: tied to Portfolio Pilot gates (M1: Sep 2026, M2: Oct 2026)\n\nDecision log must be recorded. Aegis governance review.
+CATEGORIES:Portfolio Pilot,Gate Review,AlphaStream
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-ytc-first-revenue@appdev.local
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261013
+SUMMARY:💰 YTC — First Revenue Transaction TARGET
+DESCRIPTION:Target date for first confirmed paid revenue transaction from YouTube Creator App.\n\nAcceptable revenue sources:\n• YouTube Partner Program payment\n• Affiliate commission\n• Sponsor payment\n• Lead capture conversion\n• Paid mixing/editing referral from Studio\n\nThis milestone unlocks Phase 2 planning and validates the non-negotiable funding engine assumption.
+CATEGORIES:YTC,Revenue,Milestone
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-week9-end@appdev.local
+DTSTART;VALUE=DATE:20261018
+DTEND;VALUE=DATE:20261019
+SUMMARY:📋 Week 9 End — Pulse Review
+DESCRIPTION:End of Week 9 (Oct 12-18). Post-M2 sprint.\n\nYTC: Revenue growing. Track MoM improvement.\nAlphaStream: If unlocked, assess resource needs vs portfolio burn cap.
+CATEGORIES:Portfolio Pilot,Review
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-week10-end@appdev.local
+DTSTART;VALUE=DATE:20261025
+DTEND;VALUE=DATE:20261026
+SUMMARY:📋 Week 10 End — Pulse Review
+DESCRIPTION:End of Week 10 (Oct 19-25). Weekly pulse review.\n\nAll three lanes (YTC/Studio/B-GAE) should be in steady state.\nBegin M3 gate criteria pre-check.
+CATEGORIES:Portfolio Pilot,Review
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-week11-end@appdev.local
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:📋 Week 11 End — Pulse Review
+DESCRIPTION:End of Week 11 (Oct 26 - Nov 1). Pre-M3 final prep.\n\nConfirm all M3 gate criteria are on track.\nPrepare decision log documentation.\nSchedule Aegis governance review session.
+CATEGORIES:Portfolio Pilot,Review
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-m3-gate@appdev.local
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+SUMMARY:🔴 M3 FINAL GATE — 12-Week Assessment
+DESCRIPTION:Milestone 3 Final Gate Review (end of Week 12 — Nov 2-8).\n\nFinal assessment criteria:\n✅ YTC: Consistent revenue — primary funding engine validated\n✅ YTC: 4+ monetization channels operational\n✅ Studio: 20%+ turnaround improvement sustained over 12 weeks\n✅ Studio: Direct revenue (mixing/editing) generating secondary income\n✅ B-GAE: Pilot concept finalized and grant application(s) submitted\n✅ B-GAE: At least 1 grant response received or pending\n✅ AlphaStream: Go/No-Go for full activation (if funded)\n✅ Burn: $500/mo cap maintained throughout all 12 weeks\n\nOutcomes:\n• PASS: Move to Phase 2 (YTC scale + Studio commercial + AlphaStream activation)\n• PARTIAL: Extend sprint 4 weeks with adjusted targets\n• FAIL: Aegis escalation, portfolio restructure\n\nDecision log required. Full Aegis governance review.
+CATEGORIES:Portfolio Pilot,Gate Review
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-alphastream-decision@appdev.local
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+SUMMARY:🧠 AlphaStream — Full Activation Decision
+DESCRIPTION:AlphaStream hold window ends — full activation decision.\n\nDecision context:\n• Hold intentionally placed until Portfolio Pilot Option 1 gates clear\n• Unblocks as non-dilutive funding source if YTC revenue signals materialize\n• Docker requirement noted as blocker for full stack; API-only mode available on port 8080\n\nIf YTC revenue sustained through M3: evaluate AlphaStream budget allocation for Phase 2.\nDo NOT activate if burn cap would be breached.
+CATEGORIES:AlphaStream,Milestone
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-90day-checkpoint@appdev.local
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:📊 Portfolio Pilot — 90-Day Full Checkpoint
+DESCRIPTION:Comprehensive 90-day portfolio review.\n\nAgenda:\n1. YTC revenue summary (total earned, growth rate, MoM)\n2. Studio production metrics (turnaround time, throughput, direct revenue)\n3. B-GAE status (grants submitted/awarded, pilot readiness)\n4. AlphaStream activation decision (if not already resolved at M3)\n5. Phase 2 planning kick-off\n6. Budget reconciliation ($500/mo cap review)\n7. Runway projection update (was 26 months as of May 2026)\n\nDeliverable: Phase 2 plan draft with updated allocation percentages.
+CATEGORIES:Portfolio Pilot,Checkpoint
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-hns-personal-assistant@appdev.local
+DTSTART;VALUE=DATE:20260817
+DTEND;VALUE=DATE:20260824
+SUMMARY:🏠 HNS App — Operational Support Active
+DESCRIPTION:HNS App running in parallel throughout execution sprint.\nBackend: http://127.0.0.1:8002\nFrontend: http://127.0.0.1:5173\n\nNote: Start with --host 127.0.0.1 flag for Vite (IPv4 binding required).
+CATEGORIES:HNS,Infrastructure
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-burn-review-sep@appdev.local
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+SUMMARY:💳 Monthly Burn Review — September
+DESCRIPTION:Monthly burn rate review against $500/month cap.\n\nTrack: All expenses across YTC, Studio, B-GAE, and infrastructure.\nAlert if projected September spend exceeds $450 (early warning).\nOrbit KPI Dashboard: http://127.0.0.1:8787
+CATEGORIES:Portfolio Pilot,Finance
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-burn-review-oct@appdev.local
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:💳 Monthly Burn Review — October
+DESCRIPTION:Monthly burn rate review against $500/month cap.\n\nMonth 2 of execution. Revenue should be partially offsetting costs by now.
+CATEGORIES:Portfolio Pilot,Finance
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:pp-burn-review-nov@appdev.local
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:💳 Monthly Burn Review — November
+DESCRIPTION:Monthly burn rate review against $500/month cap.\n\nFinal month of 90-day sprint. Revenue should be covering meaningful portion of burn.
+CATEGORIES:Portfolio Pilot,Finance
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-weekly-priority-ytc-20260516@appdev.local
+DTSTART;VALUE=DATE:20260516
+DTEND;VALUE=DATE:20260517
+SUMMARY:📌 P0 Due — YTC Revenue Lane
+DESCRIPTION:Owner: Piper + YTC Team\nDeliverables: lock publish cadence target, finalize GPX-video sync SOP, and deploy monetization rails.
+CATEGORIES:AppDev,Weekly Execution,YTC
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-weekly-priority-studio-20260516@appdev.local
+DTSTART;VALUE=DATE:20260516
+DTEND;VALUE=DATE:20260517
+SUMMARY:📌 P0 Due — Recording Studio Throughput
+DESCRIPTION:Owner: Piper + Recording Studio Team\nDeliverables: define mix presets, verify runtime reliability, and publish production SOP.
+CATEGORIES:AppDev,Weekly Execution,Recording Studio
+PRIORITY:1
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-orbit-sprint-due-20260518@appdev.local
+DTSTART;VALUE=DATE:20260518
+DTEND;VALUE=DATE:20260519
+SUMMARY:📌 P1 Due — Orbit Launcher Sprint Closure
+DESCRIPTION:Owner: Orbit Team\nDeliverables: close launcher routing fixes, one-click start flow, and portfolio artifact updates.\nSprint: ORBIT-SPRINT-2026-05-LAUNCHER.
+CATEGORIES:AppDev,Weekly Execution,Orbit
+PRIORITY:2
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-stability-due-20260519@appdev.local
+DTSTART;VALUE=DATE:20260519
+DTEND;VALUE=DATE:20260520
+SUMMARY:📌 P1 Due — Personal Assistant Stability Decisions
+DESCRIPTION:Owner: Piper + Beck + Quinn\nDeliverables: finalize DB migration path and decide Google sync timing to prevent scope drift.
+CATEGORIES:AppDev,Weekly Execution,Personal Assistant
+PRIORITY:2
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-hns-runtime-due-20260520@appdev.local
+DTSTART;VALUE=DATE:20260520
+DTEND;VALUE=DATE:20260521
+SUMMARY:📌 P2 Due — HNS Runtime Discipline
+DESCRIPTION:Owner: Dev + Quinn\nDeliverables: keep Node v20 baseline, verify service health checks, and maintain audit visibility.
+CATEGORIES:AppDev,Weekly Execution,HNS
+PRIORITY:3
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-alphastream-guardrail-due-20260520@appdev.local
+DTSTART;VALUE=DATE:20260520
+DTEND;VALUE=DATE:20260521
+SUMMARY:📌 P2 Due — AlphaStream Hold Guardrails
+DESCRIPTION:Owner: Piper\nDeliverables: prevent scope expansion and keep API-only readiness documented pending unblock.
+CATEGORIES:AppDev,Weekly Execution,AlphaStream
+PRIORITY:3
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-board-window-start-20260513@appdev.local
+DTSTART;VALUE=DATE:20260513
+DTEND;VALUE=DATE:20260514
+SUMMARY:🗂️ Personal Assistant 2-Week Execution Window Starts
+DESCRIPTION:Execution board window: May 13 to May 26, 2026.
+CATEGORIES:AppDev,Personal Assistant,Execution Board
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-day1-kickoff-20260513@appdev.local
+DTSTART;VALUE=DATE:20260513
+DTEND;VALUE=DATE:20260514
+SUMMARY:PA Day 1 Target — Scope Freeze and Board Activation
+DESCRIPTION:Ticket: PA-W1-D1-KICKOFF\nOwner: Piper.
+CATEGORIES:AppDev,Personal Assistant,Execution Board
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-day2-auth-20260514@appdev.local
+DTSTART;VALUE=DATE:20260514
+DTEND;VALUE=DATE:20260515
+SUMMARY:PA Day 2 Target — Auth Regression Sweep
+DESCRIPTION:Ticket: PA-W1-D2-AUTH\nOwner: Quinn + Beck.
+CATEGORIES:AppDev,Personal Assistant,Execution Board
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-day3-runtime-20260515@appdev.local
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:PA Day 3 Target — Runtime Reliability Validation
+DESCRIPTION:Ticket: PA-W1-D3-RUNTIME\nOwner: Dev + Quinn.
+CATEGORIES:AppDev,Personal Assistant,Execution Board
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-day4-doc-20260516@appdev.local
+DTSTART;VALUE=DATE:20260516
+DTEND;VALUE=DATE:20260517
+SUMMARY:PA Day 4 Target — Governance and README Alignment
+DESCRIPTION:Ticket: PA-W1-D4-DOC\nOwner: Piper.
+CATEGORIES:AppDev,Personal Assistant,Execution Board
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-day6-decision-20260518@appdev.local
+DTSTART;VALUE=DATE:20260518
+DTEND;VALUE=DATE:20260519
+SUMMARY:PA Day 6 Target — Google Sync Decision Gate
+DESCRIPTION:Ticket: PA-W2-D6-DECIDE\nOwner: Piper.\nDecision: defer Google sync vs enable now.
+CATEGORIES:AppDev,Personal Assistant,Execution Board
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-day9-closeout-20260521@appdev.local
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:PA Day 9 Target — Cycle Closeout Package
+DESCRIPTION:Ticket: PA-W2-D9-CLOSE\nOwner: Piper + Scribe.\nDeliverable: risks, evidence, and next sprint top 5.
+CATEGORIES:AppDev,Personal Assistant,Execution Board
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-pa-board-window-end-20260526@appdev.local
+DTSTART;VALUE=DATE:20260526
+DTEND;VALUE=DATE:20260527
+SUMMARY:🗂️ Personal Assistant 2-Week Execution Window Ends
+DESCRIPTION:Execution board window closes May 26, 2026. Confirm completed items and rollover decisions.
+CATEGORIES:AppDev,Personal Assistant,Execution Board
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:appdev-weekly-pulse-recurring-20260518@appdev.local
+DTSTART;VALUE=DATE:20260518
+DTEND;VALUE=DATE:20260519
+RRULE:FREQ=WEEKLY;BYDAY=MO;COUNT=40
+SUMMARY:🧭 AppDev Weekly Pulse + Decision Log
+DESCRIPTION:Recurring PM-first operating cadence.\nAgenda: priorities, blockers, gate status, and owner reassignment.\nRecord outcomes in Aegis decision log.
+CATEGORIES:AppDev,Operations,Governance
+STATUS:CONFIRMED
+END:VEVENT
+
+END:VCALENDAR
